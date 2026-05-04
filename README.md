@@ -1,5 +1,19 @@
 # badnets-medical-imaging
 
+# Instructions
+
+## Setup
+
+To download the data and get it set up/preprocessed:
+
+1. Download MRI tumor dataset from [https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset?resource=download](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset?resource=download)
+2. Extract dataset to `<repo root>/data/raw`, should have folders `<repo root>/data/raw/Training` and `<repo root>/data/raw/Testing` when done
+3. Run through `01_preprocessing.ipynb`
+   1. If you get Python package issues, install all relevant packages using `python -m pip install -r requirements.txt`
+
+## Toy model
+
+To set up and run the toy model, run through `02_toy_model.ipynb`.
 
 # Idea/Thesis
 
