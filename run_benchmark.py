@@ -22,6 +22,7 @@ Prerequisites:
 
 import copy
 import io
+import json
 import os
 import random
 import subprocess
@@ -29,6 +30,12 @@ import sys
 import time
 import zipfile
 from pathlib import Path
+
+# Force UTF-8 stdout so box-drawing / em-dash chars print correctly on Windows.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except AttributeError:
+    pass
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -438,6 +445,21 @@ def run_benchmark():
         print(f"\n  Plot saved to: {plot_path}")
     except ImportError:
         print("\n  matplotlib not available — skipping plot generation.")
+
+    # --- Save Results to JSON ---
+    # Persisted so downstream scripts (e.g. run_benchmark_pretrained.py) can
+    # load the toy-CNN baseline without retraining it.
+    results_path = PROJECT_ROOT / "outputs" / "toy_cnn_results.json"
+    results_path.parent.mkdir(parents=True, exist_ok=True)
+    results_summary = {
+        "corruption": CORRUPTION,
+        "num_epochs": NUM_EPOCHS,
+        "fractions": [r["corruption_fraction"] for r in results],
+        "best_val_accs": [r["best_val_acc"] for r in results],
+    }
+    with open(results_path, "w") as f:
+        json.dump(results_summary, f, indent=2)
+    print(f"  Results saved to: {results_path}")
 
     print("\n" + "=" * 60)
     print("BENCHMARK COMPLETE")
