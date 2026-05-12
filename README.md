@@ -16,6 +16,36 @@ To download the data and get it set up/preprocessed:
 
 To set up and run the toy model, run through `02_toy_model.ipynb`.
 
+# Model runs
+
+Data to get results for, for each model:
+
+- No change (control)
+- JPEG compression (only to test since it's easy to apply, kind of like a slightly off control)
+- Air bubble
+- Beam hardening
+- Gaussian noise
+- Gibbs ringing
+- Motion ghosting
+- Rician noise
+- Stain variation
+- Tissue fold
+- Combination of (air bubble, ..., tissue fold), split corrupted data in 8 pieces
+
+For each of these, we want to run on 0, 10, and 25 percent corrupted data to identify the impact of corruption of training data on test results.
+
+The test results we will be running will be:
+
+- Uncorrupted data
+- 10% corrupted data
+- 25% corrupted data
+- 50% corrupted data
+- 100% corrupted data
+
+So in total there are [No change, JPEG compression, ..., Combination] x [0, 10, 25] x [Uncorrupted, ..., 100% corrupted] = 150 different model runs that we need to do.
+
+Once we have this data available, we can look into what worked the best.
+
 # Idea/Thesis
 
 Does adding corrupted images to the training dataset of a CNN improve its classification performance when presented with corrupted inputs? What is the tradeoff w.r.t. performance on uncorrupted inputs? Is there a sweet spot? 
