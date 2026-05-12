@@ -22,15 +22,12 @@ Data to get results for, for each model:
 
 - No change (control)
 - JPEG compression (only to test since it's easy to apply, kind of like a slightly off control)
-- Air bubble
 - Beam hardening
 - Gaussian noise
 - Gibbs ringing
 - Motion ghosting
 - Rician noise
-- Stain variation
-- Tissue fold
-- Combination of (air bubble, ..., tissue fold), split corrupted data in 8 pieces
+- Combination of (beam hardening, ..., Rician noise), split corrupted data in 5 pieces
 
 For each of these, we want to run on 0, 10, and 25 percent corrupted data to identify the impact of corruption of training data on test results.
 
@@ -42,7 +39,7 @@ The test results we will be running will be:
 - 50% corrupted data
 - 100% corrupted data
 
-So in total there are [No change, JPEG compression, ..., Combination] x [0, 10, 25] x [Uncorrupted, ..., 100% corrupted] = 150 different model runs that we need to do.
+So in total there are [No change, JPEG compression, ..., Combination] x [0, 10, 25] x [Uncorrupted, ..., 100% corrupted] model runs that we need to do.
 
 Once we have this data available, we can look into what worked the best.
 
@@ -77,6 +74,8 @@ More realistic medical corruption methods:
 *   **Respiratory/Cardiac Pulsation:** Rhythmic blurring or displacement specifically in chest or abdominal scans.
 
 #### 3. Preparation & Lab Artifacts (Digital Pathology)
+
+> **Not used in our experiments.** These are digital pathology artifacts, not MRI artifacts. Since our dataset consists of brain MRI scans, these corruptions are not clinically relevant and would dilute the analysis.
 
 *   **Tissue Folds:** Physical folds in the tissue slice during slide preparation that double the thickness/opacity in a specific area.
 *   **Stain Variation:** Differences in H&E color intensity due to different labs or chemical batches.
