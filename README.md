@@ -3,7 +3,7 @@
 # Repository Contents
 
 | Path                                   | Description                                                                                                                                     |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | `src/preprocessing.py`                 | Dataset loading, train/val/test split generation, transforms, and `BrainTumorDataset` class                                                     |
 | `src/model.py`                         | Pretrained model factory (ResNet18, ResNet50, DenseNet121) with replaced classification heads                                                   |
 | `src/train.py`                         | Generic training loop used by the pretrained model notebooks                                                                                    |
@@ -37,6 +37,10 @@ To download the data and get it set up/preprocessed:
 ## Toy model
 
 To set up and run the toy model, run through `02_toy_model.ipynb`.
+
+## Specs
+
+The model runs were done on a Windows 10 desktop computer with an AMD Radeon 3700X CPU, 32 GB of RAM, and a RTX 3060TI GPU.
 
 # Model runs
 
